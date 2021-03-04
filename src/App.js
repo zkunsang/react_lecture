@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+let color = "red";
 
-function App() {
+export default function App() {
+  function onClick() {
+    color = "blue";
+  }
+
+  //이렇게 하면 동작하지 않음
+  // 왜? 리액트가 변경되었는지 알 수가 없음
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <button style={{ backgroundColor: color }} onClick={onClick}>
+      good!
+    </button>
   );
 }
-
-export default App;
