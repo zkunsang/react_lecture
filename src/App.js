@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import Rooms from "./Rooms";
 
-function App() {
+// state를 관리 spa1에서 팝 푸쉬 하던것을.
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div style={{ padding: 20, border: "5px solid gray" }}>
+        <Link to="/">home</Link>
+        <br />
+        <Link to="/photo">photo</Link>
+        <br />
+        <Link to="/rooms">rooms</Link>
+        <br />
+
+        <Route exact path="/" component={Home} />
+        <Route path="/photo" component={Photo} />
+        <Route path="/rooms" component={Rooms} />
+      </div>
+    </BrowserRouter>
   );
 }
 
-export default App;
+function Home() {
+  return <h2>Here is Home!</h2>;
+}
+
+function Photo() {
+  return <h2>Here is Photo!</h2>;
+}
