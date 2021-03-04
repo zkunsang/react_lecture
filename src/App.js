@@ -1,30 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import WidthPrinter from './WidthPrinter';
 
-export default function Profile({ userId }) {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    getUserApi(userId).then(data => setUser(data));
-  }, [userId]);
+export default function App() {
+  const [count, setCount] = useState(0);
 
   return (
-    <div>
-      {!user && <p>사용자 정보를 가져오는 중...</p>}
-      {user && (
-        <>
-          <p>{`name is ${user.name}`}</p>
-          <p>{`age is ${user.age}`}</p>
-        </>
-      )}
-    </div>
+    <>
+      {count === 0 && <WidthPrinter />}
+      <button onClick={() => setCount(v => v + 1)}>userId change</button>
+    </>
   )
-}
-
-const USER1 = { name: 'mike', age: 23 };
-const USER2 = { name: 'jane', age: 31 };
-
-function getUserApi(userId) {
-  return new Promise(res => {
-    setTimeout(() => { res(userId % 2 ? USER1 : USER2) }, 500);
-  });
 }
