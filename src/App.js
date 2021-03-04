@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 
-function App() {
+export default function App() {
+  const [count, setCount] = useState(0);
+  function onClick() {
+    ReactDOM.unstable_batchedUpdates(() => {
+      setCount(v => v + 1);
+      setCount(v => v + 1);
+    })
+
+  }
+
+  // useEffect로 onClick을 달아줬다가
+  // return 에서 remove해준다?
+  // react에서 관리되는것이 아니라 -> 외부에서 관리됨
+  // render called가 두번 호출됨 
+  // 외부에서 관리되는것도 ReactDOM으로 처리가 될 수 있다.
+  // 동일 배치로
+  useEffect(() => {
+    window.addEventListener('click', onClick);
+    return () => window.removeEventListener('click', onClick);
+  })
+  console.log('render called');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>{count}</h2>
+      <button onClick={onClick}>증가</button>
     </div>
-  );
+  )
 }
 
-export default App;
+// 상태값 변경은 배치로 처리되어서 한개가 아닌 2개가 됨
+// 상태값 변경 함수로 처리
