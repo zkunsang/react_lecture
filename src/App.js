@@ -10,6 +10,7 @@ export default function App() {
   return (
     <div>
       <Counter></Counter>
+      <Counter></Counter>
       <button style={{ backgroundColor: color }} onClick={onClick}>
         good!
       </button>
