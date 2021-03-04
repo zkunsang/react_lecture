@@ -1,18 +1,30 @@
-// 컴포넌트 렌더링을 할때 부수효과가 발생되는것은 프로그램의 복잡도를 증가
-// 유닛 테스트 힘들어지고
-// 렌더링 후에 처리해도 될 것이다
-// 
+import React, { useState, useEffect } from 'react';
 
-import react, { useState, useEffect } from 'react';
+export default function Profile({ userId }) {
+  const [user, setUser] = useState(null);
 
-export default function App() {
-  const [count, setCount] = useState(0);
   useEffect(() => {
-    document.title = `업데이트 횟수: ${count}`;
+    getUserApi(userId).then(data => setUser(data));
+  }, [userId]);
+
+  return (
+    <div>
+      {!user && <p>사용자 정보를 가져오는 중...</p>}
+      {user && (
+        <>
+          <p>{`name is ${user.name}`}</p>
+          <p>{`age is ${user.age}`}</p>
+        </>
+      )}
+    </div>
+  )
+}
+
+const USER1 = { name: 'mike', age: 23 };
+const USER2 = { name: 'jane', age: 31 };
+
+function getUserApi(userId) {
+  return new Promise(res => {
+    setTimeout(() => { res(userId % 2 ? USER1 : USER2) }, 500);
   });
-
-  // useEffect에서 첫번째 함수를 부수효과 함수라고 한다.
-  // 렌더링 후에 부수효과가 실행된다.
-
-  return <button onClick={(() => setCount(v => v + 1))}>increase</button>
 }
