@@ -1,14 +1,18 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useState, useEffect } from "react";
 
-console.log(
-  <a key="key1" style={{ width: 100 }} href="http://google.com">
-    click here
-  </a>
-);
+export default function App() {
+  const [seconds, setSeconds] = useState(0);
 
-function App() {
-  return <p>app</p>;
+  useEffect(() => {
+    setTimeout(() => {
+      setSeconds((v) => v + 1);
+    }, 1000);
+  });
+
+  return (
+    <div key={seconds}>
+      <h1 style={{ color: seconds % 2 ? "blue" : "red" }}>안녕하세요</h1>
+      <h2>지금까지 {seconds}초가 지났습니다.</h2>
+    </div>
+  );
 }
-
-export default App;
