@@ -1,17 +1,18 @@
-import React from "react";
-let color = "red";
+import React, { useState } from "react";
+import Counter from "./Counter";
 
 export default function App() {
+  const [color, setColor] = useState("red");
   function onClick() {
-    color = "blue";
+    setColor("blue");
   }
 
-  //이렇게 하면 동작하지 않음
-  // 왜? 리액트가 변경되었는지 알 수가 없음
-
   return (
-    <button style={{ backgroundColor: color }} onClick={onClick}>
-      good!
-    </button>
+    <div>
+      <Counter></Counter>
+      <button style={{ backgroundColor: color }} onClick={onClick}>
+        good!
+      </button>
+    </div>
   );
 }
