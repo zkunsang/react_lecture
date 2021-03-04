@@ -1,35 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+// 컴포넌트 렌더링을 할때 부수효과가 발생되는것은 프로그램의 복잡도를 증가
+// 유닛 테스트 힘들어지고
+// 렌더링 후에 처리해도 될 것이다
+// 
+
+import react, { useState, useEffect } from 'react';
 
 export default function App() {
   const [count, setCount] = useState(0);
-  function onClick() {
-    ReactDOM.unstable_batchedUpdates(() => {
-      setCount(v => v + 1);
-      setCount(v => v + 1);
-    })
-
-  }
-
-  // useEffect로 onClick을 달아줬다가
-  // return 에서 remove해준다?
-  // react에서 관리되는것이 아니라 -> 외부에서 관리됨
-  // render called가 두번 호출됨 
-  // 외부에서 관리되는것도 ReactDOM으로 처리가 될 수 있다.
-  // 동일 배치로
   useEffect(() => {
-    window.addEventListener('click', onClick);
-    return () => window.removeEventListener('click', onClick);
-  })
-  console.log('render called');
+    document.title = `업데이트 횟수: ${count}`;
+  });
 
-  return (
-    <div>
-      <h2>{count}</h2>
-      <button onClick={onClick}>증가</button>
-    </div>
-  )
+  // useEffect에서 첫번째 함수를 부수효과 함수라고 한다.
+  // 렌더링 후에 부수효과가 실행된다.
+
+  return <button onClick={(() => setCount(v => v + 1))}>increase</button>
 }
-
-// 상태값 변경은 배치로 처리되어서 한개가 아닌 2개가 됨
-// 상태값 변경 함수로 처리
