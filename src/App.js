@@ -1,24 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Counter from "./Counter";
 
+// Fragment 최근에 추가된 기능
+// div를 원치 않게 사용되는것을 막는다.
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Counter></Counter>
+      <p>안녕</p>
+      <p>하세요</p>
+    </React.Fragment>
   );
 }
 
