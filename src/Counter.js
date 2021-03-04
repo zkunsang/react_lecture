@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Title from "./Title";
 
+// 오브젝트로 넣었을 때 상태값이 변하지 않는다.
 export default function Counter() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState({ value: 0 });
   const [count2, setCount2] = useState(0);
   function onClick() {
-    setCount(count + 1);
+    count.value += 1;
+    setCount(count);
   }
 
   function onClick2() {
@@ -14,7 +16,7 @@ export default function Counter() {
 
   return (
     <div>
-      <Title title={`${count}`} />
+      <Title title={`${count.value}`} />
       <button onClick={onClick}>increse</button>
       <button onClick={onClick2}>increase2</button>
     </div>
