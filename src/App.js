@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import Counter from "./Counter";
 
 // Fragment 최근에 추가된 기능
@@ -9,6 +10,12 @@ function App() {
       <Counter></Counter>
       <p>안녕</p>
       <p>하세요</p>
+      {ReactDOM.createPortal(
+        <div>
+          <p>포탈</p>
+        </div>,
+        document.getElementById("something")
+      )}
     </React.Fragment>
   );
 }
