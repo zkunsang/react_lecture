@@ -4,7 +4,13 @@ export default function TimelineList({ timelines }) {
     return (
         <ul>
             {timelines.map(timeline => (
-                <li key={timeline.id}>{timeline.desc}</li>
+                <li key={timeline.id}>
+                    {timeline.desc}
+                    <button
+                        data-id={timeline.id}
+                        onClick={onLike}
+                    >{`like(${timeline.likes})`}</button>
+                </li>
             ))}
         </ul>
     )
