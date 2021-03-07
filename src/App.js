@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import TimelineMain from './timeline/container/TimelineMain';
+import FriendMain from './friend/container/FriendMain';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+  return <div>
+    <FriendMain />
+    <TimelineMain />
+  </div>
 }
 
-export default App;
+// FriendMain을 수정했는데
+// TimelineMain도 렌더링 함
+
+// 이걸 최적화 하는것이 리액트 리덕스의 중요한 역활 중의 한가지
