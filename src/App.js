@@ -1,25 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+// 컴포넌트 폴더에는 재사용성 높은녀석
+// 컨테이너에는 재사용성이 낮은 녀석
+import React, { useState } from 'react';
+import FriendPage from './container/FriendPage';
+import NumberSelect from './component/NumberSelect';
+import { getNextFriend } from './data';
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <FriendPage />
+  )
 }
-
-export default App;
