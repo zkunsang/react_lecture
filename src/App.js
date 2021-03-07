@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { createStore } from 'redux';
+import { createReducer } from './redux-helper';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const INITIAL_STATE = { value: 0 };
+const reducer = createReducer(INITIAL_STATE, {
+  INCREMENT: state => (state.value += 1)
+});
+
+const store = createStore(reducer);
+
+// store는 액션 처리가 끝났을때
+// subscribe가 호출됨
+let prevState;
+store.subscribe(() => {
+  const state = store.getState();
+  if (state === prevState) {
+    console.log('상태값 같음');
+  } else {
+    console.log('상태값 다름')
+  }
+  prevState = state;
+})
+
+store.dispatch({ type: 'INCREMENT' });
+store.dispatch({ type: 'OTHER_ACTION' });
+store.dispatch({ type: 'INCREMENT' });
+
+export default function App() {
+  return <div>실전 리액ㅌ</div>
 }
-
-export default App;
