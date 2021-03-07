@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import MyComponent from './MyComponent';
 
-function App() {
+export default function App() {
+  const [value1, setValue1] = useState(0);
+  const [value2, setValue2] = useState(0);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p>실전 리액트</p>
+      <button onClick={() => setValue1(value1 + 1)}>value1 증가</button>
+      <button onClick={() => setValue2(value2 + 1)}>value2 증가</button>
+      <MyComponent value1={value1} value2={value2} />
     </div>
-  );
+  )
 }
-
-export default App;
