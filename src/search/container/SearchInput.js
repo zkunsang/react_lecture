@@ -35,9 +35,7 @@ export default function SearchInput() {
                         <Typography.Text>{item.tag}</Typography.Text>
                     </Space>
                 )
-            }
-
-            ))}
+            }))}
             autoFocus
         >
             <Input size="large" placeholder="input here" prefix={<SearchOutlined />} />
