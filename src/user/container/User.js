@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import { PageHeader, Col, Row, Descriptions, Typography } from 'antd';
+import { PageHeader, Col, Row, Descriptions, Typography, Spin, Space } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { actions } from '../state';
+import { actions, Types } from '../state';
+import useFetchInfo from '../../common/hook/useFetchInfo';
 
 // match에 파라미터가 있음
 /**
@@ -20,15 +21,21 @@ export default function User({ match }) {
         dispatch(actions.fetchUser(name));
     }, [name])
 
-    const isFetched = true;
-    const isFetching = true;
+    // const isFetched = true;
+    //const isFetching = true;
+    const { isFetched, isFetching } = useFetchInfo(Types.FetchUser);
+    console.log(isFetching);
 
     return (
         <Row>
             <Col xs={24} md={20} lg={14}>
                 <PageHeader
                     onBack={history.goBack}
-                    title="사용자 정보"
+                    title={
+                        <Space>
+                            사용자 정보
+                            {isFetching && <Spin size="small" />}
+                        </Space>}
                 >
                     {user && (
                         <Descriptions layout="vertical" bordered column={1}>
